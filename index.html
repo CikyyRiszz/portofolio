@@ -1,0 +1,3833 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Farisz | Adventurer Portfolio</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Pixel Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =====================================================
+           ROOT
+        ===================================================== */
+
+        :root {
+            --green: #4caf50;
+            --green-light: #72d572;
+            --green-dark: #246b28;
+
+            --blue: #3ba7ff;
+            --cyan: #40e0ff;
+
+            --gold: #ffd43b;
+            --red: #ff4d4d;
+
+            --bg: #101510;
+            --bg-light: #182018;
+            --panel: #202a20;
+
+            --white: #f5f5f5;
+            --gray: #aeb8ae;
+
+            --border: #080b08;
+            --shadow: #050705;
+        }
+
+
+        /* =====================================================
+           GLOBAL
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(76,175,80,.08),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 80% 70%,
+                    rgba(59,167,255,.06),
+                    transparent 30%
+                ),
+                var(--bg);
+
+            color: var(--white);
+
+            font-family: "VT323", monospace;
+            font-size: 21px;
+
+            overflow-x: hidden;
+        }
+
+        body::after {
+            content: "";
+
+            position: fixed;
+            inset: 0;
+
+            pointer-events: none;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,.018) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,.018) 1px,
+                    transparent 1px
+                );
+
+            background-size: 32px 32px;
+
+            z-index: -1;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Press Start 2P", cursive;
+        }
+
+
+        /* =====================================================
+           CUSTOM SCROLLBAR
+        ===================================================== */
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #080b08;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--green-dark);
+            border: 2px solid #000;
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+            background: rgba(10,14,10,.92);
+            backdrop-filter: blur(12px);
+
+            border-bottom: 3px solid #000;
+
+            box-shadow:
+                0 4px 0 var(--green-dark);
+
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-family: "Press Start 2P";
+            color: var(--green-light) !important;
+            font-size: 14px;
+        }
+
+        .nav-link {
+            color: #ddd !important;
+            font-size: 19px;
+
+            transition: .2s;
+        }
+
+        .nav-link:hover {
+            color: var(--green-light) !important;
+            transform: translateY(-2px);
+        }
+
+        .navbar-toggler {
+            border: 2px solid var(--green);
+        }
+
+
+        /* =====================================================
+           PIXEL BUTTON
+        ===================================================== */
+
+        .pixel-btn {
+            border-radius: 0;
+
+            border: 3px solid #000;
+
+            background: var(--green);
+
+            color: white;
+
+            padding: 12px 20px;
+
+            box-shadow:
+                inset 0 4px rgba(255,255,255,.18),
+                inset 0 -5px rgba(0,0,0,.25),
+                5px 5px 0 #000;
+
+            transition: .15s;
+        }
+
+        .pixel-btn:hover {
+            color: white;
+
+            transform:
+                translate(3px,3px);
+
+            box-shadow:
+                inset 0 4px rgba(255,255,255,.18),
+                inset 0 -5px rgba(0,0,0,.25),
+                2px 2px 0 #000;
+        }
+
+        .pixel-btn-blue {
+            background: var(--blue);
+        }
+
+        .pixel-btn-dark {
+            background: #454545;
+        }
+
+
+        /* =====================================================
+           HERO / WORLD MAP
+        ===================================================== */
+
+        .hero {
+            min-height: 100vh;
+
+            padding-top: 120px;
+
+            display: flex;
+            align-items: center;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .hero-map {
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    transparent 45%,
+                    rgba(76,175,80,.08) 46%,
+                    transparent 47%
+                ),
+                linear-gradient(
+                    40deg,
+                    transparent 45%,
+                    rgba(59,167,255,.05) 46%,
+                    transparent 47%
+                );
+
+            opacity: .8;
+
+            pointer-events: none;
+        }
+
+        .map-grid {
+            position: absolute;
+
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    rgba(76,175,80,.08) 2px,
+                    transparent 2px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(76,175,80,.08) 2px,
+                    transparent 2px
+                );
+
+            background-size: 64px 64px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .world-label {
+            display: inline-block;
+
+            background: #202820;
+
+            border: 3px solid #000;
+
+            padding: 8px 14px;
+
+            color: var(--green-light);
+
+            box-shadow: 4px 4px #000;
+        }
+
+        .hero h1 {
+            font-size: clamp(
+                30px,
+                6vw,
+                65px
+            );
+
+            line-height: 1.5;
+
+            text-shadow:
+                5px 5px #000;
+
+            margin-top: 25px;
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+        }
+
+        .hero-role {
+            color: var(--cyan);
+
+            font-size: 30px;
+
+            min-height: 40px;
+        }
+
+        .hero-description {
+            max-width: 650px;
+
+            color: var(--gray);
+
+            line-height: 1.5;
+        }
+
+
+        /*
+
+<div class="col-lg-5">
+
+    <div class="minecraft-profile">
+
+        <!-- HEADER -->
+        <div class="minecraft-profile-header">
+            <span>PLAYER PROFILE</span>
+
+            <span class="online-dot">
+                ● ONLINE
+            </span>
+        </div>
+
+
+        <!-- CHARACTER -->
+        <div class="minecraft-character">
+
+            <div class="character-shadow"></div>
+
+            <div class="character">
+
+                <!-- HEAD -->
+                <div class="mc-head">
+
+                    <div class="mc-hair"></div>
+
+                    <div class="mc-face">
+
+                        <div class="mc-eye left"></div>
+                        <div class="mc-eye right"></div>
+
+                        <div class="mc-mouth"></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BODY -->
+                <div class="mc-body">
+
+                    <div class="mc-shirt">
+                        <span>F</span>
+                    </div>
+
+                </div>
+
+
+                <!-- ARMS -->
+                <div class="mc-arm mc-arm-left"></div>
+                <div class="mc-arm mc-arm-right"></div>
+
+
+                <!-- LEGS -->
+                <div class="mc-leg mc-leg-left"></div>
+                <div class="mc-leg mc-leg-right"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PLAYER NAME -->
+
+        <div class="minecraft-name">
+
+            <span class="name-bracket">
+                [
+            </span>
+
+            FARISZ
+
+            <span class="name-bracket">
+                ]
+            </span>
+
+        </div>
+
+
+        <div class="minecraft-rank">
+            ⚔️ ADVENTURER • LEVEL 17
+        </div>
+
+
+        <!-- HEARTS -->
+
+        <div class="minecraft-status">
+
+            <div class="status-title">
+                HEALTH
+            </div>
+
+            <div class="hearts">
+
+                ❤️ ❤️ ❤️ ❤️ ❤️
+                ❤️ ❤️ ❤️ ❤️ ❤️
+
+            </div>
+
+        </div>
+
+
+        <!-- ARMOR -->
+
+        <div class="minecraft-status">
+
+            <div class="status-title">
+                ARMOR
+            </div>
+
+            <div class="armor-bar">
+
+                <span>🛡️</span>
+                <span>🛡️</span>
+                <span>🛡️</span>
+                <span>🛡️</span>
+                <span>🛡️</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- XP -->
+
+        <div class="minecraft-xp">
+
+            <div class="xp-number">
+                LEVEL 17
+            </div>
+
+            <div class="minecraft-xp-bar">
+
+                <div
+                    class="minecraft-xp-fill"
+                    style="width:75%"
+                ></div>
+
+            </div>
+
+            <div class="xp-text">
+                750 / 1000 XP
+            </div>
+
+        </div>
+
+
+        <!-- PLAYER INFORMATION -->
+
+        <div class="minecraft-info">
+
+            <div>
+
+                <span>
+                    👤
+                </span>
+
+                <strong>
+                    Name
+                </strong>
+
+                <span>
+                    Farisz
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    🎂
+                </span>
+
+                <strong>
+                    Age
+                </strong>
+
+                <span>
+                    17
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    💻
+                </span>
+
+                <strong>
+                    Class
+                </strong>
+
+                <span>
+                    Web Developer
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- HOTBAR -->
+
+        <div class="minecraft-hotbar">
+
+            <div class="hotbar-slot selected">
+                💻
+                <small>1</small>
+            </div>
+
+            <div class="hotbar-slot">
+                🚲
+                <small>2</small>
+            </div>
+
+            <div class="hotbar-slot">
+                🎮
+                <small>3</small>
+            </div>
+
+            <div class="hotbar-slot">
+                🏊
+                <small>4</small>
+            </div>
+
+            <div class="hotbar-slot">
+                ⚡
+                <small>5</small>
+            </div>
+
+            <div class="hotbar-slot">
+                🧱
+                <small>6</small>
+            </div>
+
+            <div class="hotbar-slot">
+                💎
+                <small>7</small>
+            </div>
+
+            <div class="hotbar-slot">
+                📚
+                <small>8</small>
+            </div>
+
+            <div class="hotbar-slot">
+                🏆
+                <small>9</small>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+        /* =====================================================
+           XP BAR
+        ===================================================== */
+
+        .xp-wrapper {
+            margin-top: 20px;
+        }
+
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+
+            color: var(--gray);
+
+            margin-bottom: 5px;
+        }
+
+        .pixel-progress {
+            height: 20px;
+
+            background: #080a08;
+
+            border: 3px solid #000;
+
+            border-radius: 0;
+        }
+
+        .pixel-progress .progress-bar {
+            background:
+                repeating-linear-gradient(
+                    90deg,
+                    #55d65b 0,
+                    #55d65b 12px,
+                    #3dbb45 12px,
+                    #3dbb45 24px
+                );
+        }
+
+
+        /* =====================================================
+           SECTION
+        ===================================================== */
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 24px;
+
+            color: var(--green-light);
+
+            text-shadow:
+                4px 4px #000;
+
+            line-height: 1.7;
+        }
+
+        .section-subtitle {
+            color: var(--gray);
+
+            margin-bottom: 50px;
+        }
+
+
+        /* =====================================================
+           INVENTORY
+        ===================================================== */
+
+        .inventory {
+            background: #c6c6c6;
+
+            border: 5px solid #111;
+
+            box-shadow:
+                inset 5px 5px #eee,
+                inset -5px -5px #555,
+                10px 10px #000;
+
+            padding: 20px;
+        }
+
+        .inventory-title {
+            color: #202020;
+
+            font-family:
+                "Press Start 2P";
+
+            font-size: 13px;
+
+            margin-bottom: 20px;
+        }
+
+        .inventory-slot {
+            aspect-ratio: 1;
+
+            background: #8b8b8b;
+
+            border: 4px solid #444;
+
+            box-shadow:
+                inset 3px 3px #555,
+                inset -3px -3px #ddd;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 38px;
+
+            cursor: pointer;
+
+            transition: .15s;
+
+            position: relative;
+        }
+
+        .inventory-slot:hover {
+            background: #aaa;
+
+            transform: scale(1.05);
+
+            z-index: 2;
+        }
+
+        .slot-label {
+            position: absolute;
+
+            bottom: -25px;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            background: #101010;
+
+            color: white;
+
+            padding: 2px 8px;
+
+            font-size: 15px;
+
+            white-space: nowrap;
+
+            display: none;
+        }
+
+        .inventory-slot:hover .slot-label {
+            display: block;
+        }
+
+
+        /* =====================================================
+           INFO CARDS
+        ===================================================== */
+
+        .info-card {
+            height: 100%;
+
+            background: var(--panel);
+
+            border: 4px solid #000;
+
+            box-shadow:
+                inset 0 0 0 3px #485048,
+                7px 7px #000;
+
+            padding: 25px;
+
+            transition: .2s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-6px);
+
+            border-color:
+                var(--green);
+        }
+
+        .info-card h4 {
+            font-size: 15px;
+
+            color: var(--gold);
+
+            line-height: 1.7;
+        }
+
+        .info-card p {
+            color: var(--gray);
+
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           STATS
+        ===================================================== */
+
+        .stat-box {
+            text-align: center;
+
+            background: #1d241d;
+
+            border: 4px solid #000;
+
+            padding: 25px;
+
+            box-shadow:
+                inset 0 0 0 3px #485048,
+                6px 6px #000;
+        }
+
+        .stat-number {
+            color: var(--gold);
+
+            font-family:
+                "Press Start 2P";
+
+            font-size: 24px;
+        }
+
+        .stat-label {
+            color: var(--gray);
+
+            margin-top: 15px;
+        }
+
+
+        /* =====================================================
+           EQUIPMENT
+        ===================================================== */
+
+        .equipment-card {
+            background:
+                linear-gradient(
+                    145deg,
+                    #252d25,
+                    #151a15
+                );
+
+            border: 4px solid #000;
+
+            padding: 30px;
+
+            box-shadow:
+                inset 0 0 0 3px #586058,
+                8px 8px #000;
+        }
+
+        .equipment-item {
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            margin-bottom: 25px;
+        }
+
+        .equipment-icon {
+            min-width: 60px;
+            height: 60px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #777;
+
+            border: 4px solid #222;
+
+            box-shadow:
+                inset 4px 4px #aaa,
+                inset -4px -4px #444;
+
+            font-size: 30px;
+        }
+
+        .equipment-info {
+            width: 100%;
+        }
+
+        .equipment-info strong {
+            color: white;
+        }
+
+
+        /* =====================================================
+           QUEST BOARD
+        ===================================================== */
+
+        .quest {
+            background:
+                linear-gradient(
+                    135deg,
+                    #5e422d,
+                    #3c2a1d
+                );
+
+            border: 5px solid #17100b;
+
+            padding: 25px;
+
+            box-shadow:
+                inset 0 0 0 3px #8b6748,
+                8px 8px #000;
+
+            transition: .2s;
+        }
+
+        .quest:hover {
+            transform: translateY(-5px);
+        }
+
+        .quest-header {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+        }
+
+        .quest-icon {
+            font-size: 45px;
+        }
+
+        .quest h4 {
+            font-size: 14px;
+
+            color: var(--gold);
+
+            line-height: 1.7;
+        }
+
+        .quest p {
+            color: #d2c2b4;
+
+            line-height: 1.5;
+        }
+
+        .quest-status {
+            display: inline-block;
+
+            background: var(--green);
+
+            color: white;
+
+            border: 2px solid #000;
+
+            padding: 3px 8px;
+
+            font-size: 16px;
+        }
+
+
+        /* =====================================================
+           PROJECT SEARCH
+        ===================================================== */
+
+        .search-box {
+            background: #161c16;
+
+            border: 4px solid #000;
+
+            color: white;
+
+            border-radius: 0;
+
+            padding: 13px;
+
+            font-family:
+                "VT323";
+
+            font-size: 20px;
+        }
+
+        .search-box:focus {
+            background: #161c16;
+
+            color: white;
+
+            border-color:
+                var(--green);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(76,175,80,.2);
+        }
+
+        .project-card {
+            height: 100%;
+
+            background: #202820;
+
+            border: 4px solid #000;
+
+            box-shadow:
+                inset 0 0 0 3px #535d53,
+                8px 8px #000;
+
+            padding: 20px;
+
+            transition: .2s;
+
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform:
+                translateY(-8px);
+
+            border-color:
+                var(--green);
+        }
+
+        .project-cover {
+            height: 180px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #263d27,
+                    #4d3424
+                );
+
+            border: 4px solid #000;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 75px;
+
+            margin-bottom: 20px;
+
+            text-shadow:
+                5px 5px #000;
+        }
+
+        .project-card h4 {
+            font-size: 15px;
+
+            color: var(--gold);
+
+            line-height: 1.7;
+        }
+
+        .project-card p {
+            color: var(--gray);
+
+            line-height: 1.5;
+        }
+
+        .tag {
+            display: inline-block;
+
+            background: #101610;
+
+            color: var(--cyan);
+
+            border: 2px solid #000;
+
+            padding: 3px 8px;
+
+            margin: 3px;
+
+            font-size: 16px;
+        }
+
+
+        /* =====================================================
+           BIOMES
+        ===================================================== */
+
+        .biome {
+            min-height: 190px;
+
+            border: 5px solid #000;
+
+            box-shadow:
+                inset 0 0 0 3px rgba(255,255,255,.15),
+                8px 8px #000;
+
+            padding: 25px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: flex-end;
+
+            transition: .2s;
+        }
+
+        .biome:hover {
+            transform: scale(1.02);
+        }
+
+        .biome-forest {
+            background:
+                linear-gradient(
+                    rgba(20,70,25,.45),
+                    rgba(10,30,10,.85)
+                ),
+                linear-gradient(
+                    135deg,
+                    #3d8b3d,
+                    #172817
+                );
+        }
+
+        .biome-ocean {
+            background:
+                linear-gradient(
+                    rgba(0,80,120,.45),
+                    rgba(0,20,40,.85)
+                ),
+                linear-gradient(
+                    135deg,
+                    #1590bd,
+                    #0b3045
+                );
+        }
+
+        .biome-mountain {
+            background:
+                linear-gradient(
+                    rgba(80,80,80,.4),
+                    rgba(20,20,20,.85)
+                ),
+                linear-gradient(
+                    135deg,
+                    #8c8c8c,
+                    #353535
+                );
+        }
+
+        .biome-icon {
+            font-size: 55px;
+
+            text-shadow:
+                4px 4px #000;
+        }
+
+        .biome h4 {
+            font-size: 14px;
+
+            color: white;
+
+            line-height: 1.6;
+
+            margin-top: 15px;
+        }
+
+
+        /* =====================================================
+           TIMELINE
+        ===================================================== */
+
+        .timeline {
+            max-width: 850px;
+
+            margin: auto;
+
+            position: relative;
+        }
+
+        .timeline::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            bottom: 0;
+
+            left: 25px;
+
+            width: 5px;
+
+            background:
+                repeating-linear-gradient(
+                    180deg,
+                    var(--green),
+                    var(--green) 20px,
+                    #1e5d25 20px,
+                    #1e5d25 40px
+                );
+        }
+
+        .timeline-item {
+            position: relative;
+
+            padding-left: 75px;
+
+            margin-bottom: 45px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+
+            left: 8px;
+
+            top: 5px;
+
+            width: 38px;
+            height: 38px;
+
+            background: var(--gold);
+
+            border: 4px solid #000;
+
+            box-shadow:
+                4px 4px #000;
+        }
+
+        .timeline-item h4 {
+            font-size: 14px;
+
+            color: var(--gold);
+
+            line-height: 1.7;
+        }
+
+        .timeline-item p {
+            color: var(--gray);
+
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           CONTACT
+        ===================================================== */
+
+        .contact-panel {
+            max-width: 850px;
+
+            margin: auto;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #293229,
+                    #161b16
+                );
+
+            border: 5px solid #000;
+
+            box-shadow:
+                inset 0 0 0 3px #596359,
+                10px 10px #000;
+
+            padding: 30px;
+        }
+
+        .form-control {
+            background: #101510;
+
+            border: 3px solid #000;
+
+            border-radius: 0;
+
+            color: white;
+
+            padding: 12px;
+
+            font-family:
+                "VT323";
+
+            font-size: 20px;
+        }
+
+        .form-control:focus {
+            background: #101510;
+
+            color: white;
+
+            border-color:
+                var(--green);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(76,175,80,.15);
+        }
+
+        .form-control::placeholder {
+            color: #6e786e;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            background: #090d09;
+
+            border-top: 4px solid var(--green-dark);
+
+            padding: 45px 0;
+        }
+
+        .social {
+            display: inline-flex;
+
+            width: 45px;
+            height: 45px;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #222822;
+
+            color: white;
+
+            border: 3px solid #000;
+
+            margin: 5px;
+
+            transition: .2s;
+        }
+
+        .social:hover {
+            background:
+                var(--green);
+
+            color: white;
+
+            transform:
+                translateY(-5px);
+        }
+
+
+        /* =====================================================
+           MODAL
+        ===================================================== */
+
+        .minecraft-modal {
+            background:
+                #252d25;
+
+            color: white;
+
+            border: 5px solid #000;
+
+            border-radius: 0;
+
+            box-shadow:
+                12px 12px #000;
+        }
+
+
+        /* =====================================================
+           TOAST
+        ===================================================== */
+
+        .toast {
+            background: #202920;
+
+            color: white;
+
+            border: 3px solid var(--green);
+
+            border-radius: 0;
+        }
+
+
+        /* =====================================================
+           BACK TO TOP
+        ===================================================== */
+
+        #backTop {
+            position: fixed;
+
+            right: 20px;
+            bottom: 20px;
+
+            display: none;
+
+            z-index: 999;
+        }
+
+
+        /* =====================================================
+           PARTICLES
+        ===================================================== */
+
+        .particle {
+            position: fixed;
+
+            width: 5px;
+            height: 5px;
+
+            background: var(--green);
+
+            pointer-events: none;
+
+            opacity: .5;
+
+            animation:
+                particleMove 8s linear infinite;
+        }
+
+        @keyframes particleMove {
+
+            0% {
+                transform:
+                    translateY(100vh)
+                    translateX(0);
+
+                opacity: 0;
+            }
+
+            20% {
+                opacity: .5;
+            }
+
+            100% {
+                transform:
+                    translateY(-20vh)
+                    translateX(100px);
+
+                opacity: 0;
+            }
+
+        }
+
+
+        /* =====================================================
+           LIGHT MODE
+        ===================================================== */
+
+        body.light {
+            --bg: #dcefd7;
+            --panel: #edf7e9;
+            --white: #182018;
+            --gray: #526052;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #dcefd7,
+                    #c7e4c0
+                );
+        }
+
+        body.light .navbar {
+            background:
+                rgba(235,247,231,.94);
+        }
+
+        body.light .nav-link {
+            color: #182018 !important;
+        }
+
+        body.light .player-card,
+        body.light .equipment-card,
+        body.light .info-card,
+        body.light .project-card,
+        body.light .stat-box,
+        body.light .contact-panel {
+            background:
+                #edf7e9;
+        }
+
+        body.light .form-control,
+        body.light .search-box {
+            background: white;
+            color: #182018;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media(max-width: 768px) {
+
+            .hero {
+                text-align: center;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .player-card {
+                margin-top: 60px;
+            }
+
+            .section-title {
+                font-size: 18px;
+            }
+
+            .inventory {
+                box-shadow:
+                    5px 5px #000;
+            }
+
+            .project-cover {
+                height: 150px;
+            }
+
+            .timeline::before {
+                left: 16px;
+            }
+
+            .timeline-item {
+                padding-left: 55px;
+            }
+
+            .timeline-dot {
+                left: 0;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     PARTICLES
+===================================================== -->
+
+<div class="particle" style="left:10%; animation-delay:0s;"></div>
+<div class="particle" style="left:25%; animation-delay:2s;"></div>
+<div class="particle" style="left:45%; animation-delay:4s;"></div>
+<div class="particle" style="left:70%; animation-delay:1s;"></div>
+<div class="particle" style="left:90%; animation-delay:3s;"></div>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar navbar-expand-lg fixed-top">
+
+    <div class="container">
+
+        <a
+            href="#home"
+            class="navbar-brand"
+        >
+            ⛏ FARISZ.EXE
+        </a>
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navMenu"
+        >
+            <i class="bi bi-list text-white fs-2"></i>
+        </button>
+
+
+        <div
+            class="collapse navbar-collapse"
+            id="navMenu"
+        >
+
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="#home"
+                    >
+                        World
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="#inventory"
+                    >
+                        Inventory
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="#skills"
+                    >
+                        Equipment
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="#projects"
+                    >
+                        Quests
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="#contact"
+                    >
+                        Contact
+                    </a>
+                </li>
+
+                <li class="nav-item ms-lg-3">
+
+                    <button
+                        id="themeBtn"
+                        class="btn btn-sm btn-outline-success"
+                    >
+                        🌙
+                    </button>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO WORLD
+===================================================== -->
+
+<section
+    id="home"
+    class="hero"
+>
+
+    <div class="hero-map"></div>
+    <div class="map-grid"></div>
+
+
+    <div class="container hero-content">
+
+        <div class="row align-items-center">
+
+
+            <div class="col-lg-7">
+
+                <span class="world-label">
+                    🌎 WORLD: FARISZ_PORTFOLIO
+                </span>
+
+
+                <h1>
+
+                    PLAYER
+                    <span>FARISZ</span>
+
+                </h1>
+
+
+                <div class="hero-role">
+
+                    <span id="typing"></span>
+
+                </div>
+
+
+                <p class="hero-description mt-4">
+
+                    Selamat datang di dunia saya.
+
+                    Saya Farisz, seorang pelajar berusia
+                    17 tahun yang sedang membangun skill
+                    di dunia web development.
+
+                    Saya pernah membuat website kasir
+                    menggunakan HTML, CSS, dan JavaScript.
+
+                </p>
+
+
+                <div class="mt-4">
+
+                    <a
+                        href="#projects"
+                        class="btn pixel-btn me-2"
+                    >
+                        <i class="bi bi-map"></i>
+                        Explore Projects
+                    </a>
+
+                    <a
+                        href="#contact"
+                        class="btn pixel-btn pixel-btn-blue"
+                    >
+                        <i class="bi bi-chat-dots"></i>
+                        Send Message
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PLAYER CARD -->
+
+            <div class="col-lg-5">
+
+                <div class="player-card">
+
+                    <div class="player-card-title">
+
+                        PLAYER PROFILE
+
+                    </div>
+
+
+                    <div class="player-avatar">
+
+                        🧑‍💻
+
+                    </div>
+
+
+                    <div class="player-name">
+
+                        FARISZ
+
+                    </div>
+
+
+                    <div class="text-center text-secondary">
+
+                        Level 17 Adventurer
+
+                    </div>
+
+
+                    <div class="xp-wrapper">
+
+                        <div class="bar-label">
+
+                            <span>
+                                XP
+                            </span>
+
+                            <span>
+                                75%
+                            </span>
+
+                        </div>
+
+                        <div class="progress pixel-progress">
+
+                            <div
+                                class="progress-bar"
+                                style="width:75%"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="mt-3">
+
+                        <div class="bar-label">
+
+                            <span>
+                                ❤️ HP
+                            </span>
+
+                            <span>
+                                100 / 100
+                            </span>
+
+                        </div>
+
+                        <div class="progress pixel-progress">
+
+                            <div
+                                class="progress-bar"
+                                style="
+                                    width:100%;
+                                    background:#e83d3d;
+                                "
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     INVENTORY
+===================================================== -->
+
+<section id="inventory">
+
+    <div class="container">
+
+        <div class="text-center">
+
+            <h2 class="section-title">
+                PLAYER INVENTORY
+            </h2>
+
+            <p class="section-subtitle">
+                Item yang menggambarkan diri saya
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <div class="col-lg-7">
+
+                <div class="inventory">
+
+                    <div class="inventory-title">
+                        Inventory
+                    </div>
+
+
+                    <div class="row g-2">
+
+                        <div class="col-3 col-sm-2">
+
+                            <div class="inventory-slot">
+
+                                💻
+
+                                <span class="slot-label">
+                                    Coding
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-3 col-sm-2">
+
+                            <div class="inventory-slot">
+
+                                🚲
+
+                                <span class="slot-label">
+                                    Sepeda
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-3 col-sm-2">
+
+                            <div class="inventory-slot">
+
+                                🎮
+
+                                <span class="slot-label">
+                                    Gaming
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-3 col-sm-2">
+
+                            <div class="inventory-slot">
+
+                                🏊
+
+                                <span class="slot-label">
+                                    Swimming
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-3 col-sm-2">
+
+                            <div class="inventory-slot">
+
+                                ⚡
+
+                                <span class="slot-label">
+                                    JavaScript
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-3 col-sm-2">
+
+                            <div class="inventory-slot">
+
+                                🌐
+
+                                <span class="slot-label">
+                                    HTML
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-3 col-sm-2">
+
+                            <div class="inventory-slot">
+
+                                🎨
+
+                                <span class="slot-label">
+                                    CSS
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-3 col-sm-2">
+
+                            <div class="inventory-slot">
+
+                                🧱
+
+                                <span class="slot-label">
+                                    Bootstrap
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-3 col-sm-2">
+
+                            <div class="inventory-slot">
+
+                                💎
+
+                                <span class="slot-label">
+                                    Experience
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-3 col-sm-2">
+
+                            <div class="inventory-slot">
+
+                                📚
+
+                                <span class="slot-label">
+                                    Learning
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-3 col-sm-2">
+
+                            <div class="inventory-slot">
+
+                                🚀
+
+                                <span class="slot-label">
+                                    Motivation
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-3 col-sm-2">
+
+                            <div class="inventory-slot">
+
+                                🏆
+
+                                <span class="slot-label">
+                                    Achievement
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-5">
+
+                <div class="row g-3">
+
+                    <div class="col-6">
+
+                        <div class="stat-box">
+
+                            <div
+                                class="stat-number"
+                                data-target="17"
+                            >
+                                0
+                            </div>
+
+                            <div class="stat-label">
+                                Age
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-6">
+
+                        <div class="stat-box">
+
+                            <div
+                                class="stat-number"
+                                data-target="4"
+                            >
+                                0
+                            </div>
+
+                            <div class="stat-label">
+                                Skills
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-6">
+
+                        <div class="stat-box">
+
+                            <div
+                                class="stat-number"
+                                data-target="1"
+                            >
+                                0
+                            </div>
+
+                            <div class="stat-label">
+                                Project
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-6">
+
+                        <div class="stat-box">
+
+                            <div
+                                class="stat-number"
+                                data-target="3"
+                            >
+                                0
+                            </div>
+
+                            <div class="stat-label">
+                                Hobbies
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     EQUIPMENT / SKILLS
+===================================================== -->
+
+<section id="skills">
+
+    <div class="container">
+
+        <div class="text-center">
+
+            <h2 class="section-title">
+                EQUIPMENT
+            </h2>
+
+            <p class="section-subtitle">
+                Skill yang sedang saya upgrade
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <div class="col-lg-6">
+
+                <div class="equipment-card">
+
+                    <!-- HTML -->
+
+                    <div class="equipment-item">
+
+                        <div class="equipment-icon">
+                            🌐
+                        </div>
+
+                        <div class="equipment-info">
+
+                            <div class="bar-label">
+
+                                <strong>
+                                    HTML
+                                </strong>
+
+                                <span>
+                                    90%
+                                </span>
+
+                            </div>
+
+                            <div class="progress pixel-progress">
+
+                                <div
+                                    class="progress-bar"
+                                    style="width:90%"
+                                ></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CSS -->
+
+                    <div class="equipment-item">
+
+                        <div class="equipment-icon">
+                            🎨
+                        </div>
+
+                        <div class="equipment-info">
+
+                            <div class="bar-label">
+
+                                <strong>
+                                    CSS
+                                </strong>
+
+                                <span>
+                                    85%
+                                </span>
+
+                            </div>
+
+                            <div class="progress pixel-progress">
+
+                                <div
+                                    class="progress-bar"
+                                    style="width:85%"
+                                ></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- JS -->
+
+                    <div class="equipment-item">
+
+                        <div class="equipment-icon">
+                            ⚡
+                        </div>
+
+                        <div class="equipment-info">
+
+                            <div class="bar-label">
+
+                                <strong>
+                                    JavaScript
+                                </strong>
+
+                                <span>
+                                    75%
+                                </span>
+
+                            </div>
+
+                            <div class="progress pixel-progress">
+
+                                <div
+                                    class="progress-bar"
+                                    style="width:75%"
+                                ></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BOOTSTRAP -->
+
+                    <div class="equipment-item mb-0">
+
+                        <div class="equipment-icon">
+                            🧱
+                        </div>
+
+                        <div class="equipment-info">
+
+                            <div class="bar-label">
+
+                                <strong>
+                                    Bootstrap
+                                </strong>
+
+                                <span>
+                                    80%
+                                </span>
+
+                            </div>
+
+                            <div class="progress pixel-progress">
+
+                                <div
+                                    class="progress-bar"
+                                    style="width:80%"
+                                ></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-6">
+
+                <div class="info-card">
+
+                    <h4>
+                        ⚔️ PLAYER ABILITIES
+                    </h4>
+
+                    <p>
+                        ✓ Membuat website responsive
+                    </p>
+
+                    <p>
+                        ✓ Membuat UI dengan Bootstrap
+                    </p>
+
+                    <p>
+                        ✓ Membuat website kasir
+                    </p>
+
+                    <p>
+                        ✓ Membuat interaksi JavaScript
+                    </p>
+
+                    <p>
+                        ✓ Mengatur layout menggunakan CSS
+                    </p>
+
+                    <p class="mb-0">
+                        ✓ Belajar dan mengembangkan project baru
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     QUEST BOARD / PROJECT
+===================================================== -->
+
+<section id="projects">
+
+    <div class="container">
+
+        <div class="text-center">
+
+            <h2 class="section-title">
+                QUEST BOARD
+            </h2>
+
+            <p class="section-subtitle">
+                Project dan quest yang telah saya selesaikan
+            </p>
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <div class="row justify-content-center mb-4">
+
+            <div class="col-md-7">
+
+                <input
+                    type="text"
+                    id="projectSearch"
+                    class="form-control search-box"
+                    placeholder="🔎 Search quest..."
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- FILTER -->
+
+        <div class="text-center mb-5">
+
+            <button
+                class="btn pixel-btn filter active"
+                data-filter="all"
+            >
+                All
+            </button>
+
+            <button
+                class="btn pixel-btn pixel-btn-dark filter"
+                data-filter="web"
+            >
+                Web
+            </button>
+
+            <button
+                class="btn pixel-btn pixel-btn-blue filter"
+                data-filter="javascript"
+            >
+                JavaScript
+            </button>
+
+        </div>
+
+
+        <div
+            class="row g-4"
+            id="projectContainer"
+        >
+
+
+            <!-- QUEST 1 -->
+
+            <div
+                class="col-md-6 project-item"
+                data-category="web javascript"
+                data-name="website kasir"
+            >
+
+                <div
+                    class="quest"
+                    data-bs-toggle="modal"
+                    data-bs-target="#projectModal"
+                >
+
+                    <div class="quest-header">
+
+                        <div class="quest-icon">
+                            🛒
+                        </div>
+
+                        <span class="quest-status">
+                            COMPLETED
+                        </span>
+
+                    </div>
+
+                    <h4 class="mt-3">
+                        QUEST #001
+                    </h4>
+
+                    <h4>
+                        Website Kasir
+                    </h4>
+
+                    <p>
+                        Membuat website kasir sederhana menggunakan
+                        HTML, CSS, dan JavaScript.
+                    </p>
+
+                    <span class="tag">
+                        HTML
+                    </span>
+
+                    <span class="tag">
+                        CSS
+                    </span>
+
+                    <span class="tag">
+                        JavaScript
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUEST 2 -->
+
+            <div
+                class="col-md-6 project-item"
+                data-category="web"
+                data-name="personal portfolio"
+            >
+
+                <div class="quest">
+
+                    <div class="quest-header">
+
+                        <div class="quest-icon">
+                            📜
+                        </div>
+
+                        <span class="quest-status">
+                            ACTIVE
+                        </span>
+
+                    </div>
+
+                    <h4 class="mt-3">
+                        QUEST #002
+                    </h4>
+
+                    <h4>
+                        Personal Portfolio
+                    </h4>
+
+                    <p>
+                        Membuat website portfolio pribadi dengan
+                        konsep adventure dan pixel interface.
+                    </p>
+
+                    <span class="tag">
+                        Bootstrap
+                    </span>
+
+                    <span class="tag">
+                        CSS
+                    </span>
+
+                    <span class="tag">
+                        JavaScript
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUEST 3 -->
+
+            <div
+                class="col-md-6 project-item"
+                data-category="javascript"
+                data-name="interactive ui"
+            >
+
+                <div class="quest">
+
+                    <div class="quest-header">
+
+                        <div class="quest-icon">
+                            ⚡
+                        </div>
+
+                        <span class="quest-status">
+                            PLANNED
+                        </span>
+
+                    </div>
+
+                    <h4 class="mt-3">
+                        QUEST #003
+                    </h4>
+
+                    <h4>
+                        Interactive UI
+                    </h4>
+
+                    <p>
+                        Rencana membuat interface website yang
+                        semakin interaktif menggunakan JavaScript.
+                    </p>
+
+                    <span class="tag">
+                        JavaScript
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     BIOMES / HOBBY
+===================================================== -->
+
+<section id="hobbies">
+
+    <div class="container">
+
+        <div class="text-center">
+
+            <h2 class="section-title">
+                FAVORITE BIOMES
+            </h2>
+
+            <p class="section-subtitle">
+                Tempat aktivitas favorit Farisz
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <div class="col-md-4">
+
+                <div class="biome biome-forest">
+
+                    <div class="biome-icon">
+                        🚲
+                    </div>
+
+                    <h4>
+                        FOREST TRAIL
+                    </h4>
+
+                    <p>
+                        Bersepeda
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="biome biome-mountain">
+
+                    <div class="biome-icon">
+                        🎮
+                    </div>
+
+                    <h4>
+                        GAMING ZONE
+                    </h4>
+
+                    <p>
+                        Bermain Game
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="biome biome-ocean">
+
+                    <div class="biome-icon">
+                        🏊
+                    </div>
+
+                    <h4>
+                        OCEAN
+                    </h4>
+
+                    <p>
+                        Berenang
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ACHIEVEMENTS
+===================================================== -->
+
+<section id="achievements">
+
+    <div class="container">
+
+        <div class="text-center">
+
+            <h2 class="section-title">
+                ACHIEVEMENTS
+            </h2>
+
+            <p class="section-subtitle">
+                Achievement unlocked
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <div class="col-md-6">
+
+                <div class="info-card">
+
+                    <div class="d-flex align-items-center gap-4">
+
+                        <div
+                            style="
+                                font-size:55px;
+                                filter:drop-shadow(4px 4px #000);
+                            "
+                        >
+                            🪵
+                        </div>
+
+                        <div>
+
+                            <h4>
+                                Getting Started
+                            </h4>
+
+                            <p class="mb-0">
+                                Mulai mempelajari HTML dan
+                                membangun website pertama.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6">
+
+                <div class="info-card">
+
+                    <div class="d-flex align-items-center gap-4">
+
+                        <div
+                            style="
+                                font-size:55px;
+                                filter:drop-shadow(4px 4px #000);
+                            "
+                        >
+                            💎
+                        </div>
+
+                        <div>
+
+                            <h4>
+                                Diamond Builder
+                            </h4>
+
+                            <p class="mb-0">
+                                Berhasil menyelesaikan website
+                                kasir menggunakan JavaScript.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6">
+
+                <div class="info-card">
+
+                    <div class="d-flex align-items-center gap-4">
+
+                        <div
+                            style="
+                                font-size:55px;
+                                filter:drop-shadow(4px 4px #000);
+                            "
+                        >
+                            ⚡
+                        </div>
+
+                        <div>
+
+                            <h4>
+                                Redstone Mind
+                            </h4>
+
+                            <p class="mb-0">
+                                Mulai memahami logika JavaScript
+                                untuk membuat website interaktif.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6">
+
+                <div class="info-card">
+
+                    <div class="d-flex align-items-center gap-4">
+
+                        <div
+                            style="
+                                font-size:55px;
+                                filter:drop-shadow(4px 4px #000);
+                            "
+                        >
+                            🏆
+                        </div>
+
+                        <div>
+
+                            <h4>
+                                Future Builder
+                            </h4>
+
+                            <p class="mb-0">
+                                Terus belajar untuk membuat project
+                                yang lebih besar.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     JOURNEY
+===================================================== -->
+
+<section id="journey">
+
+    <div class="container">
+
+        <div class="text-center">
+
+            <h2 class="section-title">
+                ADVENTURE LOG
+            </h2>
+
+            <p class="section-subtitle">
+                Perjalanan belajar Farisz
+            </p>
+
+        </div>
+
+
+        <div class="timeline">
+
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+                <h4>
+                    🌱 Spawn Point
+                </h4>
+
+                <p>
+                    Mulai mengenal dunia HTML dan bagaimana
+                    struktur sebuah halaman website bekerja.
+                </p>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+                <h4>
+                    🎨 Crafting CSS
+                </h4>
+
+                <p>
+                    Mulai belajar styling, layout, warna,
+                    responsive design, dan animasi.
+                </p>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+                <h4>
+                    ⚡ Redstone Unlocked
+                </h4>
+
+                <p>
+                    Mulai mempelajari JavaScript dan membuat
+                    website menjadi lebih interaktif.
+                </p>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+                <h4>
+                    💎 Quest Completed
+                </h4>
+
+                <p>
+                    Berhasil membuat website kasir menggunakan
+                    HTML, CSS, dan JavaScript.
+                </p>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+                <h4>
+                    🚀 Next Adventure
+                </h4>
+
+                <p>
+                    Terus belajar dan membuat project baru
+                    untuk meningkatkan kemampuan programming.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section id="contact">
+
+    <div class="container">
+
+        <div class="text-center">
+
+            <h2 class="section-title">
+                SEND A MESSAGE
+            </h2>
+
+            <p class="section-subtitle">
+                Kirim pesan ke player Farisz
+            </p>
+
+        </div>
+
+
+        <div class="contact-panel">
+
+            <form id="contactForm">
+
+                <div class="row g-4">
+
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            Player Name
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="name"
+                            placeholder="Nama kamu..."
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            placeholder="email@example.com"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="col-12">
+
+                        <label class="form-label">
+                            Message
+                        </label>
+
+                        <textarea
+                            id="message"
+                            class="form-control"
+                            rows="5"
+                            placeholder="Tulis pesan..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="col-12">
+
+                        <button
+                            type="submit"
+                            class="btn pixel-btn"
+                        >
+                            <i class="bi bi-send"></i>
+                            Send Message
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="container text-center">
+
+        <h5
+            class="text-success"
+            style="
+                font-family:'Press Start 2P';
+                font-size:15px;
+            "
+        >
+            FARISZ_WORLD
+        </h5>
+
+        <p class="text-secondary">
+            Building my world, one block at a time.
+        </p>
+
+
+        <div>
+
+            <a
+                href="#"
+                class="social"
+            >
+                <i class="bi bi-github"></i>
+            </a>
+
+            <a
+                href="#"
+                class="social"
+            >
+                <i class="bi bi-instagram"></i>
+            </a>
+
+            <a
+                href="#"
+                class="social"
+            >
+                <i class="bi bi-discord"></i>
+            </a>
+
+            <a
+                href="#"
+                class="social"
+            >
+                <i class="bi bi-envelope"></i>
+            </a>
+
+        </div>
+
+
+        <small class="text-secondary">
+
+            ©
+            <span id="year"></span>
+            Farisz
+
+        </small>
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     PROJECT MODAL
+===================================================== -->
+
+<div
+    class="modal fade"
+    id="projectModal"
+    tabindex="-1"
+>
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content minecraft-modal">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+
+                    💎 QUEST COMPLETED
+
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal"
+                ></button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <h4
+                    style="
+                        color:#ffd43b;
+                        font-size:16px;
+                        line-height:1.7;
+                    "
+                >
+                    Website Kasir
+                </h4>
+
+                <p>
+                    Salah satu project yang pernah saya buat
+                    adalah website kasir sederhana.
+                </p>
+
+                <p>
+                    Project ini dibuat menggunakan:
+                </p>
+
+                <span class="tag">
+                    HTML
+                </span>
+
+                <span class="tag">
+                    CSS
+                </span>
+
+                <span class="tag">
+                    JavaScript
+                </span>
+
+                <hr>
+
+                <p class="text-secondary">
+
+                    Project ini membantu saya memahami bagaimana
+                    struktur HTML, styling CSS, dan logika
+                    JavaScript dapat digabungkan menjadi sebuah
+                    aplikasi web sederhana.
+
+                </p>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button
+                    class="btn pixel-btn pixel-btn-dark"
+                    data-bs-dismiss="modal"
+                >
+                    Close
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+    class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3"
+>
+
+    <div
+        id="toast"
+        class="toast"
+    >
+
+        <div
+            class="toast-header bg-dark text-white"
+        >
+
+            <span class="me-2">
+                🟩
+            </span>
+
+            <strong class="me-auto">
+                Farisz World
+            </strong>
+
+            <button
+                type="button"
+                class="btn-close btn-close-white"
+                data-bs-dismiss="toast"
+            ></button>
+
+        </div>
+
+
+        <div
+            class="toast-body"
+            id="toastText"
+        >
+            Message sent!
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     BACK TO TOP
+===================================================== -->
+
+<button
+    id="backTop"
+    class="btn pixel-btn"
+>
+    ↑
+</button>
+
+
+<!-- Bootstrap -->
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+></script>
+
+
+<script>
+
+    /* =====================================================
+       TYPING EFFECT
+    ===================================================== */
+
+    const typing =
+        document.getElementById("typing");
+
+    const roles = [
+        "Web Developer Pemula",
+        "HTML Crafter",
+        "CSS Builder",
+        "JavaScript Explorer",
+        "Bootstrap Adventurer"
+    ];
+
+    let roleIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+
+    function typeWriter() {
+
+        const role =
+            roles[roleIndex];
+
+
+        if (!deleting) {
+
+            typing.textContent =
+                role.substring(
+                    0,
+                    charIndex + 1
+                );
+
+            charIndex++;
+
+
+            if (
+                charIndex >=
+                role.length
+            ) {
+
+                deleting = true;
+
+                setTimeout(
+                    typeWriter,
+                    1500
+                );
+
+                return;
+            }
+
+        } else {
+
+            typing.textContent =
+                role.substring(
+                    0,
+                    charIndex - 1
+                );
+
+            charIndex--;
+
+
+            if (
+                charIndex <= 0
+            ) {
+
+                deleting = false;
+
+                roleIndex++;
+
+                if (
+                    roleIndex >=
+                    roles.length
+                ) {
+
+                    roleIndex = 0;
+
+                }
+
+            }
+
+        }
+
+
+        setTimeout(
+            typeWriter,
+            deleting ? 45 : 90
+        );
+
+    }
+
+
+    typeWriter();
+
+
+    /* =====================================================
+       STAT COUNTER
+    ===================================================== */
+
+    const counters =
+        document.querySelectorAll(
+            ".stat-number"
+        );
+
+
+    const counterObserver =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(
+                    entry => {
+
+                        if (
+                            !entry.isIntersecting
+                        ) {
+                            return;
+                        }
+
+
+                        const counter =
+                            entry.target;
+
+                        const target =
+                            Number(
+                                counter.dataset.target
+                            );
+
+                        let current = 0;
+
+
+                        function update() {
+
+                            current +=
+                                Math.max(
+                                    1,
+                                    Math.ceil(
+                                        target / 30
+                                    )
+                                );
+
+
+                            if (
+                                current >= target
+                            ) {
+
+                                current = target;
+
+                            }
+
+
+                            counter.textContent =
+                                current;
+
+
+                            if (
+                                current < target
+                            ) {
+
+                                setTimeout(
+                                    update,
+                                    35
+                                );
+
+                            }
+
+                        }
+
+
+                        update();
+
+                        counterObserver.unobserve(
+                            counter
+                        );
+
+                    }
+                );
+
+            },
+            {
+                threshold: .5
+            }
+        );
+
+
+    counters.forEach(
+        counter => {
+
+            counterObserver.observe(
+                counter
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       DARK / LIGHT MODE
+    ===================================================== */
+
+    const themeBtn =
+        document.getElementById(
+            "themeBtn"
+        );
+
+
+    themeBtn.addEventListener(
+        "click",
+        () => {
+
+            document.body.classList.toggle(
+                "light"
+            );
+
+
+            const isLight =
+                document.body.classList.contains(
+                    "light"
+                );
+
+
+            themeBtn.textContent =
+                isLight ? "☀️" : "🌙";
+
+
+            localStorage.setItem(
+                "farisz-theme",
+                isLight
+                    ? "light"
+                    : "dark"
+            );
+
+        }
+    );
+
+
+    if (
+        localStorage.getItem(
+            "farisz-theme"
+        ) === "light"
+    ) {
+
+        document.body.classList.add(
+            "light"
+        );
+
+        themeBtn.textContent = "☀️";
+
+    }
+
+
+    /* =====================================================
+       PROJECT FILTER
+    ===================================================== */
+
+    const filters =
+        document.querySelectorAll(
+            ".filter"
+        );
+
+    const projectItems =
+        document.querySelectorAll(
+            ".project-item"
+        );
+
+
+    filters.forEach(
+        filterButton => {
+
+            filterButton.addEventListener(
+                "click",
+                () => {
+
+                    const filter =
+                        filterButton.dataset.filter;
+
+
+                    projectItems.forEach(
+                        project => {
+
+                            const categories =
+                                project.dataset.category;
+
+
+                            if (
+                                filter === "all" ||
+                                categories.includes(
+                                    filter
+                                )
+                            ) {
+
+                                project.style.display =
+                                    "";
+
+                            } else {
+
+                                project.style.display =
+                                    "none";
+
+                            }
+
+                        }
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       PROJECT SEARCH
+    ===================================================== */
+
+    const search =
+        document.getElementById(
+            "projectSearch"
+        );
+
+
+    search.addEventListener(
+        "input",
+        () => {
+
+            const keyword =
+                search.value
+                    .toLowerCase()
+                    .trim();
+
+
+            projectItems.forEach(
+                project => {
+
+                    const name =
+                        project.dataset.name
+                            .toLowerCase();
+
+
+                    if (
+                        name.includes(
+                            keyword
+                        )
+                    ) {
+
+                        project.style.display =
+                            "";
+
+                    } else {
+
+                        project.style.display =
+                            "none";
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       CONTACT FORM
+    ===================================================== */
+
+    const contactForm =
+        document.getElementById(
+            "contactForm"
+        );
+
+    const toastElement =
+        document.getElementById(
+            "toast"
+        );
+
+    const toastText =
+        document.getElementById(
+            "toastText"
+        );
+
+
+    contactForm.addEventListener(
+        "submit",
+        event => {
+
+            event.preventDefault();
+
+
+            const name =
+                document.getElementById(
+                    "name"
+                ).value;
+
+
+            toastText.textContent =
+                `Quest message dari ${name} berhasil dikirim! ⚔️`;
+
+
+            const toast =
+                new bootstrap.Toast(
+                    toastElement
+                );
+
+
+            toast.show();
+
+
+            contactForm.reset();
+
+        }
+    );
+
+
+    /* =====================================================
+       BACK TO TOP
+    ===================================================== */
+
+    const backTop =
+        document.getElementById(
+            "backTop"
+        );
+
+
+    window.addEventListener(
+        "scroll",
+        () => {
+
+            if (
+                window.scrollY > 500
+            ) {
+
+                backTop.style.display =
+                    "block";
+
+            } else {
+
+                backTop.style.display =
+                    "none";
+
+            }
+
+        }
+    );
+
+
+    backTop.addEventListener(
+        "click",
+        () => {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+    );
+
+
+    /* =====================================================
+       YEAR
+    ===================================================== */
+
+    document.getElementById(
+        "year"
+    ).textContent =
+        new Date().getFullYear();
+
+
+    /* =====================================================
+       MOBILE NAVBAR AUTO CLOSE
+    ===================================================== */
+
+    document.querySelectorAll(
+        ".nav-link"
+    ).forEach(
+        link => {
+
+            link.addEventListener(
+                "click",
+                () => {
+
+                    const menu =
+                        document.getElementById(
+                            "navMenu"
+                        );
+
+
+                    if (
+                        menu.classList.contains(
+                            "show"
+                        )
+                    ) {
+
+                        bootstrap.Collapse
+                            .getOrCreateInstance(
+                                menu
+                            )
+                            .hide();
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       INVENTORY CLICK EFFECT
+    ===================================================== */
+
+    document.querySelectorAll(
+        ".inventory-slot"
+    ).forEach(
+        slot => {
+
+            slot.addEventListener(
+                "click",
+                () => {
+
+                    slot.style.transform =
+                        "scale(.9)";
+
+                    setTimeout(
+                        () => {
+
+                            slot.style.transform =
+                                "";
+
+                        },
+                        120
+                    );
+
+                }
+            );
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
